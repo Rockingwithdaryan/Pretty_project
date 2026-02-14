@@ -9,11 +9,11 @@ app.use(express.static(path.join(__dirname)));
 
 // Named routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'HTML', 'index.html'));
+  res.sendFile(path.join(__dirname, 'src', 'html', 'index.html'));
 });
 
 app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'HTML', 'home.html'));
+  res.sendFile(path.join(__dirname, 'src', 'html', 'home.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
