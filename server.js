@@ -20,8 +20,14 @@ function findHtmlDir() {
 
 const htmlDir = findHtmlDir();
 
-// Serve everything statically
+// Serve everything statically — cover both casing variants
 app.use(express.static(path.join(__dirname)));
+app.use('/src/css', express.static(path.join(__dirname, 'src', 'CSS')));
+app.use('/src/css', express.static(path.join(__dirname, 'src', 'css')));
+app.use('/src/js',  express.static(path.join(__dirname, 'src', 'JS')));
+app.use('/src/js',  express.static(path.join(__dirname, 'src', 'js')));
+app.use('/src/html',express.static(path.join(__dirname, 'src', 'HTML')));
+app.use('/src/html',express.static(path.join(__dirname, 'src', 'html')));
 
 // Named routes — use htmlDir so casing doesn't matter
 app.get('/', (_req, res) => {
