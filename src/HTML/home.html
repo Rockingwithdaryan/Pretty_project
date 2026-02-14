@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌 Happy Valentine's Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/CSS/home.css"/>
+</head>
+<body>
+
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <header>
+    <h1>Happy Valentine's Day 💌</h1>
+    <p>Choose your next chapter.</p>
+  </header>
+
+  <div class="chapter-select" id="chapter-select">
+    <h2>Choose Your Chapter ♥</h2>
+    <p>Four little worlds, all made for you.</p>
+    <div class="chapter-cards">
+
+      <a class="chapter-card" href="/">
+        <div class="card-icon">💬</div>
+        <span class="card-chapter">Chapter 1</span>
+        <div class="card-title">Introduction</div>
+        <div class="card-desc">Read the introduction again from the beginning.</div>
+      </a>
+
+      <a class="chapter-card" href="/src/HTML/minigame.html">
+        <div class="card-icon">🎮</div>
+        <span class="card-chapter">Chapter 2</span>
+        <div class="card-title">Mini Game</div>
+        <div class="card-desc">A little something fun, just for you.</div>
+      </a>
+
+      <a class="chapter-card" href="/src/HTML/playlist.html">
+        <div class="card-icon">🎵</div>
+        <span class="card-chapter">Chapter 3</span>
+        <div class="card-title">Our Playlist</div>
+        <div class="card-desc">Songs that make me think of you.</div>
+      </a>
+
+      <a class="chapter-card" href="/src/HTML/letter.html">
+        <div class="card-icon">💌</div>
+        <span class="card-chapter">Chapter 4</span>
+        <div class="card-title">Love Letter</div>
+        <div class="card-desc">Words I've been meaning to say.</div>
+      </a>
+
+    </div>
+  </div>
+
+  <script>
+    // Show chapter select with fade in
+    var cs = document.getElementById('chapter-select');
+    cs.style.display = 'flex';
+    cs.style.opacity = '0';
+    cs.style.transition = 'opacity 0.6s ease';
+    setTimeout(function() { cs.style.opacity = '1'; }, 30);
+
+    // Petals
+    var layer = document.getElementById('petalLayer');
+    for (var i = 0; i < 18; i++) {
+      var p = document.createElement('div');
+      p.className = 'petal';
+      var size = 10 + Math.random() * 16;
+      p.style.cssText =
+        'left:' + (Math.random() * 100) + '%;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'animation-duration:' + (5 + Math.random() * 9) + 's;' +
+        'animation-delay:' + (Math.random() * 10) + 's;' +
+        'opacity:0;transform:rotate(' + (Math.random() * 360) + 'deg);' +
+        'background:hsl(' + (350 + Math.random() * 15) + ',80%,' + (82 + Math.random() * 10) + '%);';
+      layer.appendChild(p);
+    }
+  </script>
+</body>
+</html>

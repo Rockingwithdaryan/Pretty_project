@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌 Chapter 2: Meowya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/CSS/minigame.css"/>
+</head>
+<body>
+
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <header>
+    <a class="btn-back" href="/home">← Back</a>
+    <div class="header-text">
+      <span class="chapter-label">Chapter 2</span>
+      <h1>Take Care of Meowya</h1>
+    </div>
+  </header>
+
+  <main class="game-container">
+
+    <!-- Love bar -->
+    <div class="bar-section">
+      <span class="bar-label">Meowya's Love</span>
+      <div class="bar-track">
+        <div class="bar-fill" id="bar-fill"></div>
+      </div>
+      <span class="bar-value" id="bar-value">0%</span>
+    </div>
+
+    <!-- Speech bubble -->
+    <div class="bubble-wrap">
+      <div class="speech-bubble" id="speech-bubble">
+        <span id="bubble-text">Meow~</span>
+      </div>
+    </div>
+
+    <!-- Cat -->
+    <div class="cat-wrap" id="cat-wrap">
+      <img id="cat-img" src="/images/kitty idle.png" alt="Meowya"/>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <button class="action-btn" id="btn-pet" onclick="doAction('pet')">
+        <img src="/images/heart.png" alt="Pet"/>
+        <span>Pet</span>
+      </button>
+      <button class="action-btn" id="btn-feed" onclick="doAction('feed')">
+        <img src="/images/catfood.png" alt="Feed"/>
+        <span>Feed</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Win popup -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup">
+      <div class="popup-emoji">🐱💕</div>
+      <p>Good job! Meowya is in love with you, just like a certain someone <em>*wink wink*</em></p>
+      <button class="popup-btn" onclick="resetGame()">Play Again ↩</button>
+    </div>
+  </div>
+
+  <script src="/src/JS/minigame.js"></script>
+</body>
+</html>

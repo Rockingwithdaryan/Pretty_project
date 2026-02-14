@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌 A Message For You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/CSS/style.css"/>
+</head>
+<body>
+
+  <!-- Floating petals -->
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <header>
+    <h1>Happy Valentine's Day 💌</h1>
+    <p>Click to continue the story…</p>
+  </header>
+
+  <!-- Main Stage -->
+  <div class="stage" id="stage">
+
+    <!-- Character -->
+    <div class="character-box">
+      <div class="character-frame">
+        <img id="char-img" src="/images/speaking 1.jpeg" alt="Character" class="visible"/>
+      </div>
+      <span class="character-name" id="char-name">??</span>
+    </div>
+
+    <!-- Dialogue -->
+    <div class="dialogue-side">
+      <span class="scene-label" id="scene-label">Chapter 1 · A Message For You</span>
+
+      <div class="dialogue-box">
+        <div id="dialogue-text"></div>
+      </div>
+
+      <div class="progress-dots" id="dots"></div>
+
+      <button class="btn-next" id="btn-next" onclick="advance()">Continue ♥</button>
+    </div>
+
+  </div>
+
+  <script src="/src/JS/index.js"></script>
+</body>
+</html>
