@@ -2,13 +2,17 @@ const http = require('http');
 const fs   = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+// Render sets its own PORT — always use process.env.PORT in production
+const PORT = process.env.PORT || 3000;
 
-// Map file extensions to MIME types
+// Root directory of the project
+const ROOT = __dirname;
+
+// MIME types
 const mimeTypes = {
-  '.html': 'text/html',
-  '.css':  'text/css',
-  '.js':   'application/javascript',
+  '.html': 'text/html; charset=utf-8',
+  '.css':  'text/css; charset=utf-8',
+  '.js':   'application/javascript; charset=utf-8',
   '.jpeg': 'image/jpeg',
   '.jpg':  'image/jpeg',
   '.png':  'image/png',
@@ -18,23 +22,37 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-  let urlPath = req.url;
+  // Strip query strings
+  let urlPath = req.url.split('?')[0];
 
-  // Serve intro at root, home/chapter select at /home
+  // Decode %20 etc.
+  try { urlPath = decodeURIComponent(urlPath); } catch(e) {}
+
+  // Named routes
   if (urlPath === '/' || urlPath === '') {
     urlPath = '/src/HTML/index.html';
   } else if (urlPath === '/home') {
     urlPath = '/src/HTML/home.html';
   }
 
-  const filePath = path.join(__dirname, decodeURIComponent(urlPath));
+  // Build absolute file path
+  const filePath = path.join(ROOT, urlPath);
+
+  // Security: make sure path doesn't escape project root
+  if (!filePath.startsWith(ROOT)) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
+    return;
+  }
+
   const ext      = path.extname(filePath).toLowerCase();
   const mimeType = mimeTypes[ext] || 'application/octet-stream';
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
+      console.log('404:', filePath);
       res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end(`404 - File not found: ${urlPath}`);
+      res.end('404 - Not found: ' + urlPath);
       return;
     }
     res.writeHead(200, { 'Content-Type': mimeType });
@@ -42,10 +60,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  const link = `http://localhost:${PORT}`;
-  console.log('\n  💌 Valentine\'s server is running!\n');
-  console.log(`  ➜  Local:   \x1b[36m\x1b[4m${link}\x1b[0m`);
-  console.log('\n  Ctrl+Click the link above to open in your browser.');
-  console.log('  Press Ctrl+C to stop the server.\n');
+server.listen(PORT, '0.0.0.0', () => {
+  console.log('\n  💌 Valentine\'s server is running!');
+  console.log('  ➜  http://localhost:' + PORT + '\n');
 });
